@@ -21,24 +21,50 @@ def index():
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>Verificación de Certificados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            border: 1px solid #ddd;
+            padding: 40px;
+            width: 500px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 2px 2px 12px #aaa;
+        }
+        input {
+            margin: 10px;
+            padding: 5px;
+            width: 80%;
+        }
+        button {
+            padding: 10px 20px;
+        }
+        iframe {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-<div style="text-align: center;">
-    <h2>Verificación de Certificados</h2>
-    <form method="POST">
-        <label>Folio:</label>
-        <input type="text" name="folio" required><br>
-        <label>Código de Verificación:</label>
-        <input type="text" name="codigo" required><br>
-        <button type="submit">Consultar</button>
-    </form>
-    {% if certificado %}
-    <p style="color: green;">Certificado encontrado:</p>
-    <iframe src="/ver/{{ certificado }}" width="100%" height="500px"></iframe>
-    {% endif %}
-</div>
+    <div class="container">
+        <h2>Verificación de Certificados</h2>
+        <form method="POST">
+            <label>Folio:</label><br>
+            <input type="text" name="folio" placeholder="Ej: 500588087549" required><br>
+            <label>Código de Verificación:</label><br>
+            <input type="text" name="codigo" placeholder="Ej: 2d2d7b27e5c3" required><br>
+            <button type="submit">Consultar</button>
+        </form>
+        {% if certificado %}
+            <p style="margin-top: 20px; color: green;">Certificado encontrado:</p>
+            <iframe src="/ver/{{ certificado }}" width="100%" height="500px"></iframe>
+        {% endif %}
+    </div>
 </body>
 </html>
 """, certificado=certificado)
@@ -48,5 +74,5 @@ def ver_pdf(filename):
     return send_from_directory(CERT_DIR, filename)
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
+    port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
