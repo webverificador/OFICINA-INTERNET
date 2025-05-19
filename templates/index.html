@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificación de Certificados</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="container">
+    <h2>Verificación de Certificados</h2>
+    <form method="POST">
+        <label>Folio:</label>
+        <input type="text" name="folio" placeholder="Ej: 500588087549" required>
+        <label>Código de Verificación:</label>
+        <input type="text" name="codigo" placeholder="Ej: 2d2d7b27e5c3" required>
+        <button type="submit">Consultar</button>
+    </form>
+
+    {% if certificado %}
+        <p class="ok">Certificado encontrado:</p>
+        <iframe src="/ver/{{ certificado }}" width="100%" height="500px"></iframe>
+    {% endif %}
+</div>
+</body>
+</html>
