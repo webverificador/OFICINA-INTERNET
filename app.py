@@ -92,9 +92,9 @@ def index():
 </html>
 """, certificado=certificado)
 
-@app.route("/ver/<path:filename>")
+@app.route("/ver/<path:certificado>")
 def ver_pdf(filename):
-    return send_from_directory(CERT_DIR, filename)
+    return send_from_directory(CERT_DIR, crtificado)
 
 if __name__ == "__main__":
    import os
