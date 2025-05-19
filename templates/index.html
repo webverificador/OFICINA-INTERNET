@@ -1,25 +1,31 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Verificación de Certificados</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-<div class="container">
-    <h2>Verificación de Certificados</h2>
-    <form method="POST">
-        <label>Folio:</label>
-        <input type="text" name="folio" placeholder="Ej: 500588087549" required>
-        <label>Código de Verificación:</label>
-        <input type="text" name="codigo" placeholder="Ej: 2d2d7b27e5c3" required>
-        <button type="submit">Consultar</button>
-    </form>
-
-    {% if certificado %}
-        <p class="ok">Certificado encontrado:</p>
+<body class="bg-light">
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow p-4" style="min-width: 400px;">
+        <h4 class="text-center mb-4 text-primary">Verificación de Certificados</h4>
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label">Folio:</label>
+                <input type="text" name="folio" class="form-control" placeholder="Ej: 500588087549" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Código de Verificación:</label>
+                <input type="text" name="codigo" class="form-control" placeholder="Ej: 2d2d7b27e5c3" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Consultar</button>
+        </form>
+        {% if certificado %}
+        <p class="text-success mt-3 text-center">Certificado encontrado:</p>
         <iframe src="/ver/{{ certificado }}" width="100%" height="500px"></iframe>
-    {% endif %}
+        {% endif %}
+    </div>
 </div>
 </body>
 </html>
